@@ -5,9 +5,8 @@ import { UsersModule } from './users/users.module';
 import { MongooseModule } from '@nestjs/mongoose';
 const dotenv = require('dotenv');
 dotenv.config({ path: './config.env' });
-console.log(process.env.DATABASE_URL);
 @Module({
-  imports: [UsersModule, MongooseModule.forRoot(process.env.DATABASE_URL)],
+  imports: [UsersModule, MongooseModule.forRoot('mongodb://localhost:27017')],
   controllers: [AppController],
   providers: [AppService],
 })

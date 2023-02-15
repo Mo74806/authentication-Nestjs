@@ -29,7 +29,6 @@ export class UsersController {
   async signup(@Body() body: CreateUserDto, @Response() res) {
     this.authservice.signup(body, res);
   }
-
   @Post('/login')
   async login(@Body() body: SigninDto, @Response() res) {
     this.authservice.signin(body, res);
@@ -42,29 +41,24 @@ export class UsersController {
   }
 
   @Get()
-  @UseGuards(AdminGuard)
   async getAllUsers() {
     return await this.usersService.findUsers();
   }
   @Get('/:id')
-  @UseGuards(AdminGuard)
   async getUser(@Param('id') id: string) {
     return await this.usersService.findUser(id);
   }
   @Post('/')
-  @UseGuards(AdminGuard)
   async createUser(@Body() body: CreateUserDto) {
     return await this.usersService.createUser(body);
   }
 
   @Patch('/:id')
-  @UseGuards(AdminGuard)
   async editUser(@Param('id') id: string, @Body() body: UpdateUserDto) {
     return await this.usersService.updateUser(id, body);
   }
 
   @Delete('/:id')
-  @UseGuards(AdminGuard)
   async deleteUser(@Param('id') id: string) {
     return await this.usersService.deleteUser(id);
   }
